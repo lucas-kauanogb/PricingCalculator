@@ -1,5 +1,4 @@
-﻿using System;
-using PricingCalculator.App.Models;
+﻿using PricingCalculator.App.Models;
 using PricingCalculator.App.Services;
 
 var pricingService = new PricingService();
@@ -15,8 +14,8 @@ while (true)
         Console.WriteLine("--- NOVO CÁLCULO ---");
         Console.Write("Nome do Produto (ou 'sair' para encerrar): ");
         var name = Console.ReadLine();
-        
-        if (name?.ToLower() == "sair") 
+
+        if (name?.ToLower() == "sair")
         {
             Console.WriteLine("Encerrando a calculadora. Bons negócios!");
             break;
@@ -72,7 +71,7 @@ static decimal ReadDecimal(string prompt)
     {
         Console.Write(prompt);
         var input = Console.ReadLine();
-        
+
         if (decimal.TryParse(input, out decimal value))
         {
             return value;

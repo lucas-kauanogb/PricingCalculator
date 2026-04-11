@@ -1,0 +1,21 @@
+root = true
+
+# Todas as linguagens
+[*]
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Regras específicas para C#
+[*.cs]
+# Estilo de código básico
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_style_prefer_var = when_type_is_apparent:suggestion
+dotnet_sort_system_directives_first = true
+
+# Análise estática e formatação rigorosa
+dotnet_diagnostic.IDE0005.severity = warning # Avisa sobre 'usings' desnecessários
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true

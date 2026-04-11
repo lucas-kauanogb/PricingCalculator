@@ -24,14 +24,18 @@ jobs:
       with:
         dotnet-version: '8.0.x' # Versão mais atual e estável
 
-    # Passo C: Instala as dependências (como o framework xUnit que usamos para testar)
+# Passo C: Instala as dependências
     - name: 📦 Restaurar dependências
       run: dotnet restore
 
-    # Passo D: Compila o projeto (Linting / Análise Estática básica embutida no build do C#)
+    # Passo D: LINTING / Análise Estática (NOVO!)
+    - name: 🔍 Análise Estática (Linting)
+      run: dotnet format --verify-no-changes
+
+    # Passo E: Compila o projeto (Build)
     - name: 🛠️ Compilar o projeto (Build)
       run: dotnet build --no-restore --configuration Release
 
-    # Passo E: Roda os nossos testes que provam que a matemática funciona!
+    # Passo F: Roda os testes
     - name: 🧪 Executar Testes Automatizados
       run: dotnet test --no-build --configuration Release --verbosity normal
