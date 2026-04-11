@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/lucas-kauanogb/PricingCalculator/actions/workflows/ci.yml/badge.svg)](https://github.com/lucas-kauanogb/PricingCalculator/actions/workflows/ci.yml)
 
-![Print do Sistema](print.png)
+![Print do Sistema](Print.png)
 
 > Uma aplicação simples de linha de comando (CLI) para auxiliar pequenos empreendedores no cálculo correto de custos e preços de venda, garantindo a lucratividade do negócio.
 
