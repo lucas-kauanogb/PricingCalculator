@@ -1,0 +1,37 @@
+name: CI - Calculadora de Precificacao
+
+# 1. Define QUANDO o robô vai rodar
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 2. Define O QUE o robô vai fazer
+jobs:
+  build-and-test:
+    name: Build e Testes Automatizados
+    runs-on: ubuntu-latest # Roda em um servidor Linux rápido e barato na nuvem
+
+    steps:
+    # Passo A: Baixa o seu código do repositório
+    - name: 📥 Fazer checkout do código
+      uses: actions/checkout@v4
+
+    # Passo B: Instala o ambiente do C# (.NET) no servidor do GitHub
+    - name: ⚙️ Configurar o .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x' # Versão mais atual e estável
+
+    # Passo C: Instala as dependências (como o framework xUnit que usamos para testar)
+    - name: 📦 Restaurar dependências
+      run: dotnet restore PricingCalculator.sln
+
+    # Passo D: Compila o projeto (Linting / Análise Estática básica embutida no build do C#)
+    - name: 🛠️ Compilar o projeto (Build)
+      run: dotnet build PricingCalculator.sln --no-restore --configuration Release
+
+    # Passo E: Roda os nossos testes que provam que a matemática funciona!
+    - name: 🧪 Executar Testes Automatizados
+      run: dotnet test PricingCalculator.sln --no-build --configuration Release --verbosity normal
