@@ -2,6 +2,10 @@
 
 [![Build Status](https://github.com/lucas-kauanogb/PricingCalculator/actions/workflows/ci.yml/badge.svg)](https://github.com/lucas-kauanogb/PricingCalculator/actions/workflows/ci.yml)
 
+### 🟢 Teste Online (Deploy)
+**Acesse a aplicação rodando direto no navegador via Replit:**
+👉 [https://replit.com/@lucas-kauanogb/PricingCalculator] 
+
 ![Print do Sistema](Print.png)
 
 > Uma aplicação simples de linha de comando (CLI) para auxiliar pequenos empreendedores no cálculo correto de custos e preços de venda, garantindo a lucratividade do negócio.
@@ -43,6 +47,11 @@ Pequenos artesãos, confeiteiros, padeiros independentes, costureiros e qualquer
 # 8. Instruções de execução
 Com o terminal aberto na pasta raiz do projeto, digite o seguinte comando e aperte Enter:
 `dotnet run --project src/PricingCalculator.App`
+
+### Execução via Docker (Container)
+Caso possua o Docker instalado, você pode rodar a aplicação isolada com os comandos:
+`docker build -t pricing-calculator .`
+`docker run -it pricing-calculator`
 
 # 9. Instruções para rodar os testes
 Para executar a verificação automatizada, abra o terminal na pasta raiz do projeto e rode:
