@@ -2,7 +2,7 @@
 using PricingCalculator.App.Services;
 
 var pricingService = new PricingService();
-var exchangeRateService = new ExchangeRateService(); // Instanciando o novo serviço
+var exchangeRateService = new ExchangeRateService();
 
 Console.WriteLine("=======================================");
 Console.WriteLine(" CALCULADORA DE PRECIFICAÇÃO ARTESANAL ");
@@ -38,9 +38,22 @@ while (true)
 
         var result = pricingService.CalculatePrice(product);
 
-        // --- INTEGRAÇÃO COM API ---
-        Console.WriteLine("\n⏳ Buscando cotações de moedas atualizadas na internet...");
-        var (usdRate, eurRate) = await exchangeRateService.GetCurrentRatesAsync();
+        // --- INTEGRAÇÃO COM API (AGORA ISOLADA PARA NÃO CRACHAR O PROGRAMA) ---
+        decimal usdRate = 0;
+        decimal eurRate = 0;
+
+        try
+        {
+            Console.WriteLine("\n⏳ Buscando cotações de moedas atualizadas na internet...");
+            var rates = await exchangeRateService.GetCurrentRatesAsync();
+            usdRate = rates.UsdRate;
+            eurRate = rates.EurRate;
+        }
+        catch (Exception)
+        {
+            // Se a API falhar (ex: erro 429 no Replit), o programa apenas engole o erro
+            // silenciosamente e segue o fluxo para imprimir o recibo em Modo Offline.
+        }
 
         Console.WriteLine("\n==============================");
         Console.WriteLine("     RECIBO DE CUSTOS         ");
@@ -54,7 +67,6 @@ while (true)
         Console.WriteLine($"PREÇO DE VENDA (BRL): R$ {result.FinalPrice:F2}");
         Console.WriteLine("------------------------------");
 
-        // --- EXIBIÇÃO DOS DADOS DA API ---
         if (usdRate > 0 && eurRate > 0)
         {
             Console.WriteLine("🌍 MERCADO INTERNACIONAL:");
