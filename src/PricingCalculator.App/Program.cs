@@ -38,7 +38,7 @@ while (true)
 
         var result = pricingService.CalculatePrice(product);
 
-        // --- INTEGRAÇÃO COM API (AGORA ISOLADA PARA NÃO CRACHAR O PROGRAMA) ---
+
         decimal usdRate = 0;
         decimal eurRate = 0;
 
@@ -51,8 +51,7 @@ while (true)
         }
         catch (Exception)
         {
-            // Se a API falhar (ex: erro 429 no Replit), o programa apenas engole o erro
-            // silenciosamente e segue o fluxo para imprimir o recibo em Modo Offline.
+
         }
 
         Console.WriteLine("\n==============================");
@@ -75,7 +74,7 @@ while (true)
         }
         else
         {
-            Console.WriteLine("⚠️ Não foi possível obter as cotações internacionais (Modo Offline).");
+            Console.WriteLine("⚠️ Não foi possível conectar à internet para obter as taxas de câmbio (Modo Offline).");
         }
         Console.WriteLine("==============================\n");
     }
